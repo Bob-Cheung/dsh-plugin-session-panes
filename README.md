@@ -29,29 +29,31 @@
 
 ## 安装
 
-### 方式 A：从本仓库克隆后安装（当前可用）
+### 一句话安装（推荐）
 
-```bash
-git clone https://github.com/Bob-Cheung/dsh-plugin-session-panes.git
-```
-
-假设克隆到 `D:\tools\dsh-plugin-session-panes`，然后在 DSH 任意会话里说：
+在 DSH 任意会话里对 agent 说：
 
 ```text
-请把 D:\tools\dsh-plugin-session-panes 安装为插件
+下载并安装成插件，下载地址为：git clone https://github.com/Bob-Cheung/dsh-plugin-session-panes.git
 ```
 
-等价的插件管理器调用（`target` 是含 `package.json` 的绝对路径，即仓库根）：
+agent 会自己克隆仓库，再把克隆目录安装为插件。返回 `application: applied` 后刷新一次页面即可（需要本机有 Git）。
 
-```text
-plugin_manager(action: "install_bundle", target: "D:\\tools\\dsh-plugin-session-panes")
-```
+### 手动安装
 
-首次安装可能弹出权限确认，允许即可。安装返回 `application: applied` 后，如果界面没有立刻变化，刷新一次页面。
+1. 克隆仓库（没有 Git，就在仓库页 **Code → Download ZIP** 解压）：
 
-### 方式 B：下载 ZIP（没有 Git 时）
+   ```bash
+   git clone https://github.com/Bob-Cheung/dsh-plugin-session-panes.git
+   ```
 
-在仓库页 **Code → Download ZIP**，解压后把解压目录的路径交给上一步；注意 ZIP 解压后通常多一层同名目录，`target` 要指向真正含 `package.json` 的那一层。
+2. 让 agent 安装这个目录，或者直接调用插件管理器（`target` 是含 `package.json` 的绝对路径，即仓库根）：
+
+   ```text
+   plugin_manager(action: "install_bundle", target: "D:\\tools\\dsh-plugin-session-panes")
+   ```
+
+首次安装可能弹出权限确认，允许即可。ZIP 解压后通常多一层同名目录，`target` 要指向真正含 `package.json` 的那一层。
 
 安装成功后，在「插件管理 / Plugins」里能看到 **Session panes / 多会话分屏**，带图标与中英文描述。
 
