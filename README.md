@@ -2,6 +2,10 @@
 
 一个 DeepSeek Harness Web UI 插件：**在右侧边栏并排打开多个会话**。点击会话行上的按钮，或把会话拖到窗口右侧，该会话就会作为独立窗格出现在右侧，主栏当前会话不受影响。
 
+![Session panes 演示：主栏会话与右侧窗格并排显示](./demo.png)
+
+<sub>示意：主栏继续当前会话，另一个会话在右侧窗格中同步显示；截图里会话行悬停按钮的提示是「在右侧打开（可拖到右侧）」。</sub>
+
 - 仓库：<https://github.com/Bob-Cheung/dsh-plugin-session-panes>
 - 许可证：MIT
 
@@ -102,6 +106,7 @@ dsh-plugin-session-panes/
 ├── index.js            # Host 半：空实现
 ├── client.js           # Client 半：协议、标签页、行按钮、拖拽浮层、样式
 ├── icon.svg            # 插件图标
+├── demo.png            # 演示截图（README 配图，不参与运行时）
 ├── LICENSE             # MIT
 ├── README.md           # 本文件
 ├── .gitignore
