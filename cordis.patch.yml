@@ -1,0 +1,3 @@
+- insert:
+    - id: session-panes
+      name: '@bob-cheung/dsh-session-panes'

@@ -1,0 +1,4 @@
+# Local checkout of the DSH session-panes plugin
+node_modules/
+*.log
+.DS_Store
