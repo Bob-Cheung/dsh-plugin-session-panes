@@ -3,7 +3,6 @@
 一个 DeepSeek Harness Web UI 插件：**在右侧边栏并排打开多个会话**。点击会话行上的按钮，或把会话拖到窗口右侧，该会话就会作为独立窗格出现在右侧，主栏当前会话不受影响。
 
 - 仓库：<https://github.com/Bob-Cheung/dsh-plugin-session-panes>
-- npm 包名：`@bob-cheung/dsh-session-panes`（尚未发布）
 - 许可证：MIT
 
 > 本仓库根目录就是插件包本身（`package.json` 在根上），不是 monorepo，也没有子包。安装时 `target` 直接指向仓库根目录。
@@ -22,7 +21,7 @@
 
 - 已安装 DeepSeek Harness，并使用 **Web UI**（桌面端或 `dsh web` 均可）。
 - Harness 版本需提供右侧边栏相关服务与插槽（见「兼容性」）。已在 `0.1.5-rc.1` 上验证。
-- 安装插件不需要 Node.js、pnpm 或任何构建工具，这些由 Harness 自身完成。
+- 安装插件不需要 Node.js 或任何构建工具，这些由 Harness 自身完成。
 
 ## 安装
 
@@ -50,14 +49,6 @@ plugin_manager(action: "install_bundle", target: "D:\\tools\\dsh-plugin-session-
 
 在仓库页 **Code → Download ZIP**，解压后把解压目录的路径交给上一步；注意 ZIP 解压后通常多一层同名目录，`target` 要指向真正含 `package.json` 的那一层。
 
-### 方式 C：从 npm 安装（发布后可用）
-
-```text
-plugin_manager(action: "install_bundle", target: "@bob-cheung/dsh-session-panes@1.0.0")
-```
-
-当前尚未 `npm publish`，这条命令暂时装不到；发布步骤见「发布到 npm」。
-
 安装成功后，在「插件管理 / Plugins」里能看到 **Session panes / 多会话分屏**，带图标与中英文描述。
 
 ## 使用
@@ -71,14 +62,13 @@ plugin_manager(action: "install_bundle", target: "@bob-cheung/dsh-session-panes@
 
 ## 更新
 
-- **本地目录安装**：安装是**链接**到 checkout，不是拷贝，所以只需：
+安装是**链接**到 checkout，不是拷贝，所以只需：
 
-  ```bash
-  git pull
-  ```
+```bash
+git pull
+```
 
-  然后**重启 Harness**（替换已安装的 JavaScript 模块需要重启才能加载新版本，只刷新页面不一定够）。
-- **npm 安装**：把 `target` 里的版本号改掉重新安装，然后重启 Harness。
+然后**重启 Harness**（替换已安装的 JavaScript 模块需要重启才能加载新版本，只刷新页面不一定够）。
 
 ## 卸载
 
@@ -107,7 +97,7 @@ Host 半（`index.js`）只导出一个空的 `apply()`，不注册任何行为�
 
 ```text
 dsh-plugin-session-panes/
-├── package.json        # 包清单：exports、files 与 dsh.bundle / dsh.client 声明
+├── package.json        # 包清单：exports 与 dsh.bundle / dsh.client 声明
 ├── cordis.patch.yml    # Loader patch：插入 session-panes 行
 ├── index.js            # Host 半：空实现
 ├── client.js           # Client 半：协议、标签页、行按钮、拖拽浮层、样式
@@ -148,35 +138,11 @@ dsh-plugin-session-panes/
   ```
 
 - 清单校验：`package.json`、`locale/*.json` 是 JSON，`cordis.patch.yml` 是 YAML；改完立即检查。
-- 打包内容核对：
-
-  ```bash
-  npm pack --dry-run
-  ```
-
-  应当包含 `package.json`、`index.js`、`client.js`、`cordis.patch.yml`、`icon.svg`、`locale/*.json`，以及 npm 自动带入的 `README.md`、`LICENSE`。
-
-## 发布到 npm
-
-包名 `@bob-cheung/dsh-session-panes` 在 npm 上未被占用；发布需要拥有 `bob-cheung` 这个用户名或组织：
-
-```bash
-npm login          # 首次，浏览器授权
-npm publish        # publishConfig.access=public，无需再加 --access
-```
-
-发布后：
-
-```bash
-npm view @bob-cheung/dsh-session-panes version
-```
-
-常见失败码：`E403` scope 无权限（改包名，需同步 `package.json`、`cordis.patch.yml`、`client.js` 三处）；`E402` 需付费组织；`E409` 版本已存在（先改 `version`）；`EOTP` 需要一次性验证码。
 
 ## 常见问题
 
 **会话行没有出现「在右侧打开」按钮？**
-确认插件已安装且已启用（`application: applied`），然后刷新页面；仍不行则重启 Harness。若近期切换过安装来源（例如从本地目录换成 npm 包），Host 可能仍持有旧的绝对路径，必须重启。
+确认插件已安装且已启用（`application: applied`），然后刷新页面；仍不行则重启 Harness。若近期移动过插件目录或重装过插件，Host 可能仍持有旧的绝对路径，必须重启。
 
 **拖到右侧没有反应？**
 投放区只在视口右侧 45% 内生效，且需要从会话行按钮上开始拖拽；松手位置要落在高亮区域内。
@@ -201,12 +167,6 @@ Install from a checkout:
 
 ```text
 plugin_manager(action: "install_bundle", target: "<absolute path to this repository>")
-```
-
-Install from npm (once published):
-
-```text
-plugin_manager(action: "install_bundle", target: "@bob-cheung/dsh-session-panes@1.0.0")
 ```
 
 Uninstall with `plugin_manager(action: "remove_bundle", target: "@bob-cheung/dsh-session-panes")`. Licensed MIT.
