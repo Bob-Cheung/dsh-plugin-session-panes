@@ -2,7 +2,7 @@
 
 一个 DeepSeek Harness Web UI 插件：**在右侧边栏并排打开多个会话**。点击会话行上的按钮，或把会话拖到窗口右侧，该会话就会作为独立窗格出现在右侧，主栏当前会话不受影响。
 
-- 仓库：<https://github.com/Bob-Cheung/deepseek-harness-plugin-session-panes>
+- 仓库：<https://github.com/Bob-Cheung/dsh-plugin-session-panes>
 - npm 包名：`@bob-cheung/dsh-session-panes`（尚未发布）
 - 许可证：MIT
 
@@ -29,19 +29,19 @@
 ### 方式 A：从本仓库克隆后安装（当前可用）
 
 ```bash
-git clone https://github.com/Bob-Cheung/deepseek-harness-plugin-session-panes.git
+git clone https://github.com/Bob-Cheung/dsh-plugin-session-panes.git
 ```
 
-假设克隆到 `D:\tools\deepseek-harness-plugin-session-panes`，然后在 DSH 任意会话里说：
+假设克隆到 `D:\tools\dsh-plugin-session-panes`，然后在 DSH 任意会话里说：
 
 ```text
-请把 D:\tools\deepseek-harness-plugin-session-panes 安装为插件
+请把 D:\tools\dsh-plugin-session-panes 安装为插件
 ```
 
 等价的插件管理器调用（`target` 是含 `package.json` 的绝对路径，即仓库根）：
 
 ```text
-plugin_manager(action: "install_bundle", target: "D:\\tools\\deepseek-harness-plugin-session-panes")
+plugin_manager(action: "install_bundle", target: "D:\\tools\\dsh-plugin-session-panes")
 ```
 
 首次安装可能弹出权限确认，允许即可。安装返回 `application: applied` 后，如果界面没有立刻变化，刷新一次页面。
@@ -106,7 +106,7 @@ Host 半（`index.js`）只导出一个空的 `apply()`，不注册任何行为�
 ## 目录结构
 
 ```text
-deepseek-harness-plugin-session-panes/
+dsh-plugin-session-panes/
 ├── package.json        # 包清单：exports、files 与 dsh.bundle / dsh.client 声明
 ├── cordis.patch.yml    # Loader patch：插入 session-panes 行
 ├── index.js            # Host 半：空实现

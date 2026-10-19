@@ -7,11 +7,11 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bob-Cheung/deepseek-harness-plugin-session-panes.git"
+    "url": "git+https://github.com/Bob-Cheung/dsh-plugin-session-panes.git"
   },
-  "homepage": "https://github.com/Bob-Cheung/deepseek-harness-plugin-session-panes#readme",
+  "homepage": "https://github.com/Bob-Cheung/dsh-plugin-session-panes#readme",
   "bugs": {
-    "url": "https://github.com/Bob-Cheung/deepseek-harness-plugin-session-panes/issues"
+    "url": "https://github.com/Bob-Cheung/dsh-plugin-session-panes/issues"
   },
   "keywords": [
     "dsh-plugin",
